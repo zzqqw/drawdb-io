@@ -1,0 +1,26 @@
+name: Publish branch to gh page
+on:
+ workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+      GITHUB_USER: zzqqw
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.REPO_TOKEN }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Set permissions
+      run: chmod +x ./release-page.sh
+    - name: Execute shell
+      run: ./release-page.sh
+      shell: bash
+    
