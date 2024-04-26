@@ -18,11 +18,11 @@ git config --global user.name "github-actions[bot]"
 git config --global user.email  "41898282+github-actions[bot]@users.noreply.github.com"
 echo machine github.com login $GITHUB_USER password $GITHUB_TOKEN > ~/.netrc
 
-# echo "Updating code repository in progress..."
-# echo "Package and publish nodes"
-# git clone https://github.com/drawdb-io/drawdb.git code
+echo "Updating code repository in progress..."
+echo "Package and publish nodes"
+git clone https://github.com/drawdb-io/drawdb.git code
 cd code
-# npm ci
+npm ci
 npm run build
 
 # gh-pages分支存在的情况
